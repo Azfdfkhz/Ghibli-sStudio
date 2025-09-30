@@ -109,7 +109,7 @@ export default function Movie({ film, onClose, darkMode }) {
               {[
                 { name: "Vidio", icon: "/vidio-logo.png" },
                 { name: "Netflix", icon: "/netflix-logo.png" },
-                { name: "Disney+", icon: "/disney-plus-logo.png" },
+                { name: "Disney+", icon: "/disney-plus.png" },
               ].map((service, i) => (
                 <motion.div
                   key={service.name}
