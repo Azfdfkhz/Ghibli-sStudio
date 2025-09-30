@@ -2,6 +2,7 @@
 
 html, body {
   transition: background-color 1s ease, color 1s ease;
+    overflow: auto;
 }
 
 @keyframes drift {
