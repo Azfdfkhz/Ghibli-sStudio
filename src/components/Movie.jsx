@@ -107,9 +107,9 @@ export default function Movie({ film, onClose, darkMode }) {
             </h2>
             <div className="grid grid-cols-3 gap-6">
               {[
-                { name: "Vidio", icon: "/assets/vidio.png" },
-                { name: "Netflix", icon: "/assets/netflix.png" },
-                { name: "Disney+", icon: "/assets/disney.png" },
+                { name: "Vidio", icon: "/assets/vidio logo.png" },
+                { name: "Netflix", icon: "/assets/Netflix logo.png" },
+                { name: "Disney+", icon: "/assets/Disney + logo.png" },
               ].map((service, i) => (
                 <motion.div
                   key={service.name}
