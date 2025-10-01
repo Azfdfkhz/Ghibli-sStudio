@@ -20,10 +20,10 @@
       👉 UI/UX, Sidebar, Banner, Movie, SearchBar, FilmCard  
     </td>
     <td align="center">
-      <a href="https://github.com/username2">
-        <img src="https://avatars.githubusercontent.com/username2" width="100px;" alt=""/>
+      <a href="https://github.com/ItzKevinz">
+        <img src="https://avatars.githubusercontent.com/ItzKevinz" width="100px;" alt=""/>
         <br />
-        <sub><b>Kevin</b></sub>
+        <sub><b>Kevin Hendra Bouwmeester</b></sub>
       </a>
       <br />
       👉 CharacterList, FilmList
