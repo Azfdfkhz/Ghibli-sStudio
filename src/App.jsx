@@ -450,6 +450,7 @@ const handleLoginSuccess = (username) => {
                     film={selectedFilm}
                     onClose={handleCloseMovie}
                     darkMode={darkMode}
+                    username={username} 
                   />
                 </div>
               ) : (
@@ -458,6 +459,7 @@ const handleLoginSuccess = (username) => {
                     films={films} 
                     darkMode={darkMode} 
                     onSelectFilm={handleFilmSelect}
+                    username={username} 
                   />
                 </div>
               )
