@@ -20,17 +20,10 @@
       👉 UI/UX, Sidebar, Banner, Movie, SearchBar, FilmCard  
     </td>
     <td align="center">
-<<<<<<< HEAD
-      <a href="https://github.com/username2">
-        <img src="https://avatars.githubusercontent.com/username2" width="100px;" alt=""/>
-        <br />
-        <sub><b>Kevin</b></sub>
-=======
       <a href="https://github.com/ItzKevinz">
         <img src="https://avatars.githubusercontent.com/ItzKevinz" width="100px;" alt=""/>
         <br />
         <sub><b>Kevin Hendra Bouwmeester</b></sub>
->>>>>>> 5d901f4beabf2004a2cce27d90bb785182c71816
       </a>
       <br />
       👉 CharacterList, FilmList
@@ -56,10 +49,6 @@
   </tr>
 </table>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 5d901f4beabf2004a2cce27d90bb785182c71816
 ## 📖 **Tentang Project**
 
 **🎯 Latar Belakang:**
@@ -69,12 +58,9 @@
 - [dapet nilai]
 - [dapet nilai +]
 - [dapet nilai ++++++]
-<<<<<<< HEAD
-
-=======
 - [dapet Project]
 - [dapet BMW M5]
->>>>>>> 5d901f4beabf2004a2cce27d90bb785182c71816
+
 ## ✨ **Fitur**
 
 ### 🎉 Fitur Utama
@@ -94,13 +80,10 @@ Fitur ini dapat mempermudah mencari film Ghibli apa yg ingin kita lihat
 ### **Frontend:**
 ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white)
 ![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
-<<<<<<< HEAD
-=======
 ![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
 ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 ![Lucide React](https://img.shields.io/badge/Lucide_React-FF6B6B?style=for-the-badge&logo=react&logoColor=white)
 ![React Parallax Tilt](https://img.shields.io/badge/React_Parallax_Tilt-8A2BE2?style=for-the-badge&logo=react&logoColor=white)
->>>>>>> 5d901f4beabf2004a2cce27d90bb785182c71816
 
 
 ## 🚀 **Cara Install**
@@ -132,35 +115,13 @@ npm run dev
 
 ## 🔥 **Code**
 
-```javascript
-<<<<<<< HEAD
-//⚡ FUNGSI: Simpan status login ke localStorage
-useEffect(() => {
-  if (isLoggedIn && username) {
-    localStorage.setItem('ghibliAuth', JSON.stringify({
-      isLoggedIn: true,
-      username: username
-    }));
-  } else {
-    localStorage.removeItem('ghibliAuth'); // 🗑️ BERSIHKAN: Saat logout
-  }
-}, [isLoggedIn, username]);
-
-// ⚡ FUNGSI: Simpan dark mode preference
-useEffect(() => {
-  localStorage.setItem('darkMode', JSON.stringify(darkMode));
-}, [darkMode]);
-
-=======
 useEffect(() => {
   const checkAuthStatus = () => {
     try {
       const savedAuth = localStorage.getItem('ghibliAuth');
       if (!savedAuth) return;
-
       const authData = JSON.parse(savedAuth);
       const isValidAuth = authData.isLoggedIn && authData.username;
-      
       if (isValidAuth) {
         setIsLoggedIn(true);
         setUsername(authData.username);
@@ -170,11 +131,8 @@ useEffect(() => {
       localStorage.removeItem('ghibliAuth');
     }
   };
-
   checkAuthStatus();
 }, []);
-
-     Fungsi ini untuk auto-login user dari data yang disimpan di browser.
 ```
 # nanti ah lanjutnya gamood
->>>>>>> 5d901f4beabf2004a2cce27d90bb785182c71816
+
