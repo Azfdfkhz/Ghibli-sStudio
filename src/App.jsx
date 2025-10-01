@@ -435,13 +435,26 @@ export default function App() {
               )
             }
           />
-
           <Route
             path="/films"
             element={
-              <div className="flex-1 animate-fade-in">
-                <FilmList films={films} darkMode={darkMode} />
-              </div>
+              selectedFilm ? (
+                <div className="flex-1 animate-fade-in">
+                  <Movie
+                    film={selectedFilm}
+                    onClose={handleCloseMovie}
+                    darkMode={darkMode}
+                  />
+                </div>
+              ) : (
+                <div className="flex-1 animate-fade-in">
+                  <FilmList 
+                    films={films} 
+                    darkMode={darkMode} 
+                    onSelectFilm={handleFilmSelect}
+                  />
+                </div>
+              )
             }
           />
 
