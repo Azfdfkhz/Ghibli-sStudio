@@ -175,10 +175,15 @@ export default function App() {
     setIsAutoPlaying(true);
   };
 
-  const handleLoginSuccess = (user) => {
-    setIsLoggedIn(true);
-    setUsername(user);
-  };
+const handleLoginSuccess = (username) => {
+  setIsLoggedIn(true);
+  setUsername(username);
+  
+  localStorage.setItem('ghibliAuth', JSON.stringify({
+    isLoggedIn: true,
+    username: username
+  }));
+};
 
   const handleLogout = () => {
     setIsLoggedIn(false);
