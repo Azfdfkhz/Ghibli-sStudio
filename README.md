@@ -8,93 +8,46 @@
 
 ## 👥 **Kelompok Kami**
 
-<div align="center">
-
-### 🚀 **The Ghibli Explorers**
-
 <table>
   <tr>
-    <td align="center" width="25%">
+    <td align="center">
       <a href="https://github.com/Azfdfkhz">
-        <img src="https://avatars.githubusercontent.com/u/Azfdfkhz" width="100px;" alt="Azmi" style="border-radius: 50%; border: 3px solid #61DAFB;"/>
+        <img src="https://avatars.githubusercontent.com/Azfdfkhz" width="100px;" alt=""/>
         <br />
-        <sub><b>Azmi Fadhil F.</b></sub>
+        <sub><b>Azmi Fadhil Fakhrurrazi</b></sub>
       </a>
       <br />
-      <div style="margin-top: 8px;">
-        <img src="https://img.shields.io/badge/UI%2FUX-Design-FF6B6B?style=flat-square"/>
-        <img src="https://img.shields.io/badge/Frontend-React-61DAFB?style=flat-square"/>
-      </div>
-      <p style="font-size: 12px; margin-top: 8px;">
-        🎨 UI/UX Design<br/>
-        🧭 Navigation<br/>
-        🎬 Movie Components<br/>
-        🔍 Search System
-      </p>
+      👉 UI/UX, Sidebar, Banner, Movie, SearchBar, FilmCard  
     </td>
-    
-    <td align="center" width="25%">
+    <td align="center">
       <a href="https://github.com/username2">
-        <img src="https://avatars.githubusercontent.com/u/username2" width="100px;" alt="Kevin" style="border-radius: 50%; border: 3px solid #06B6D4;"/>
+        <img src="https://avatars.githubusercontent.com/username2" width="100px;" alt=""/>
         <br />
         <sub><b>Kevin</b></sub>
       </a>
       <br />
-      <div style="margin-top: 8px;">
-        <img src="https://img.shields.io/badge/Components-React-61DAFB?style=flat-square"/>
-        <img src="https://img.shields.io/badge/Data-API-8A2BE2?style=flat-square"/>
-      </div>
-      <p style="font-size: 12px; margin-top: 8px;">
-        👥 CharacterList<br/>
-        📋 FilmList<br/>
-        🎭 Character Data<br/>
-        🗂️ List Management
-      </p>
+      👉 CharacterList, FilmList
     </td>
-    
-    <td align="center" width="25%">
+    <td align="center">
       <a href="https://github.com/username3">
-        <img src="https://avatars.githubusercontent.com/u/username3" width="100px;" alt="Risma" style="border-radius: 50%; border: 3px solid #FF6B6B;"/>
+        <img src="https://avatars.githubusercontent.com/username3" width="100px;" alt=""/>
         <br />
         <sub><b>Risma Afiani</b></sub>
       </a>
       <br />
-      <div style="margin-top: 8px;">
-        <img src="https://img.shields.io/badge/Auth-System-FF6B6B?style=flat-square"/>
-        <img src="https://img.shields.io/badge/Security-Login-00C853?style=flat-square"/>
-      </div>
-      <p style="font-size: 12px; margin-top: 8px;">
-        🔐 Login System<br/>
-        👤 Authentication<br/>
-        🛡️ Security<br/>
-        📝 LoginCard
-      </p>
+      👉 LoginCard
     </td>
-    
-    <td align="center" width="25%">
-      <a href="https://github.com/username4">
-        <img src="https://avatars.githubusercontent.com/u/username4" width="100px;" alt="Revan" style="border-radius: 50%; border: 3px solid #00C853;"/>
+        <td align="center">
+      <a href="https://github.com/username3">
+        <img src="https://avatars.githubusercontent.com/username3" width="100px;" alt=""/>
         <br />
         <sub><b>Revan Nugraha</b></sub>
       </a>
       <br />
-      <div style="margin-top: 8px;">
-        <img src="https://img.shields.io/badge/Content-About-00C853?style=flat-square"/>
-        <img src="https://img.shields.io/badge/Info-Profile-8A2BE2?style=flat-square"/>
-      </div>
-      <p style="font-size: 12px; margin-top: 8px;">
-        ℹ️ AboutUs Page<br/>
-        👋 User Profile<br/>
-        📄 Content<br/>
-        🏆 Team Info
-      </p>
+      👉 AboutUs
     </td>
   </tr>
 </table>
-
-<br/>
-</div>
-
 
 ## 📖 **Tentang Project**
 
