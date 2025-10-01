@@ -12,7 +12,7 @@ import icon from "../Logo/icon.png";
 
 const logoImages = [l1, l2, l3, l4, l5, l6];
 
-export default function Sidebar({ darkMode }) {
+export default function Sidebar({ darkMode, onLogout }) {
   const [currentLogo, setCurrentLogo] = useState(0);
   const location = useLocation();
 
@@ -24,43 +24,48 @@ export default function Sidebar({ darkMode }) {
   }, []);
 
   const iconColor = darkMode ? "text-white" : "text-gray-900";
-  const hoverBg = darkMode ? "hover:bg-white/20" : "hover:bg-gray-300/30";
-  
-  // Warna untuk state aktif
   const activeBg = darkMode ? "bg-blue-600" : "bg-blue-500";
   const activeText = "text-white";
 
   return (
     <>
-      {/* Desktop Sidebar */}
-      <aside
-        className={`hidden lg:flex w-28 h-screen flex-col items-center py-6 space-y-8 shadow-2xl transition-all duration-500 relative z-20 bg-white/10 backdrop-blur-md border-r border-white/20`}
-      >
+      {/* 🖥️ Desktop Sidebar - GLASSMORPHISM */}
+      <aside className={`hidden lg:flex fixed left-0 top-0 w-28 h-screen flex-col items-center py-6 space-y-8 shadow-xl z-40 ${
+        darkMode 
+          ? 'bg-gray-900/40 backdrop-blur-xl border-gray-700/50' 
+          : 'bg-white/40 backdrop-blur-xl border-white/50'
+      } border-r`}>
         <div className="flex flex-col items-center py-4">
           <img
             key={currentLogo}
             src={logoImages[currentLogo]}
             alt="Logo"
-            className="w-24 h-20 object-contain transition-all duration-500 ease-in-out"
+            className="w-24 h-20 object-contain transition-all duration-500 ease-in-out drop-shadow-lg"
           />
         </div>
 
-        {/* Home */}
         <Link
           to="/"
-          className={`hover:scale-110 transition p-2 rounded-lg ${hoverBg} flex flex-col items-center ${
-            location.pathname === "/" ? `${activeBg} ${activeText}` : ""
+          className={`hover:scale-110 transition-all duration-300 p-2 rounded-xl flex flex-col items-center ${
+            location.pathname === "/" 
+              ? `${activeBg} ${activeText} shadow-lg` 
+              : darkMode 
+                ? "hover:bg-white/10" 
+                : "hover:bg-gray-900/10"
           }`}
         >
           <Home size={35} className={location.pathname === "/" ? activeText : iconColor} />
           <span className={`text-xs mt-1 block ${location.pathname === "/" ? activeText : iconColor}`}>Home</span>
         </Link>
 
-        {/* Character */}
         <Link
           to="/characters"
-          className={`hover:scale-110 transition p-2 rounded-lg ${hoverBg} flex flex-col items-center ${
-            location.pathname === "/characters" ? `${activeBg} ${activeText}` : ""
+          className={`hover:scale-110 transition-all duration-300 p-2 rounded-xl flex flex-col items-center ${
+            location.pathname === "/characters" 
+              ? `${activeBg} ${activeText} shadow-lg` 
+              : darkMode 
+                ? "hover:bg-white/10" 
+                : "hover:bg-gray-900/10"
           }`}
         >
           <div className="w-12 h-15">
@@ -73,75 +78,106 @@ export default function Sidebar({ darkMode }) {
           <span className={`text-xs mt-1 ${location.pathname === "/characters" ? activeText : iconColor}`}>Character</span>
         </Link>
 
-        {/* Films */}
         <Link
           to="/films"
-          className={`hover:scale-110 transition p-2 rounded-lg ${hoverBg} flex flex-col items-center ${
-            location.pathname === "/films" ? `${activeBg} ${activeText}` : ""
+          className={`hover:scale-110 transition-all duration-300 p-2 rounded-xl flex flex-col items-center ${
+            location.pathname === "/films" 
+              ? `${activeBg} ${activeText} shadow-lg` 
+              : darkMode 
+                ? "hover:bg-white/10" 
+                : "hover:bg-gray-900/10"
           }`}
         >
           <Film size={35} className={location.pathname === "/films" ? activeText : iconColor} />
           <span className={`text-xs mt-1 block ${location.pathname === "/films" ? activeText : iconColor}`}>Films</span>
         </Link>
 
-        {/* User */}
-        <button
-          className={`mt-auto hover:scale-110 transition p-2 rounded-lg ${hoverBg} flex flex-col items-center`}
+        <Link
+          to="/about"
+          className={`mt-auto hover:scale-110 transition-all duration-300 p-2 rounded-xl flex flex-col items-center ${
+            location.pathname === "/about" 
+              ? `${activeBg} ${activeText} shadow-lg` 
+              : darkMode 
+                ? "hover:bg-white/10" 
+                : "hover:bg-gray-900/10"
+          }`}
         >
-          <User size={24} className={iconColor} />
-          <span className={`text-xs mt-1 block ${iconColor}`}>User</span>
-        </button>
+          <User size={24} className={location.pathname === "/about" ? activeText : iconColor} />
+          <span className={`text-xs mt-1 block ${location.pathname === "/about" ? activeText : iconColor}`}>User</span>
+        </Link>
       </aside>
 
-      {/* Mobile Bottom Navigation - Mirip dengan Desktop */}
-      <div className="lg:hidden fixed bottom-0 left-0 w-full z-50 bg-white/10 backdrop-blur-md border-t border-white/20">
-        <nav className="flex justify-around items-center py-3">
-          {/* Home */}
+      {/* 📱 Mobile Floating Bottom Nav - GLASSMORPHISM */}
+      <div className="lg:hidden fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50">
+        <nav className={`flex justify-around items-center py-3 px-6 
+          ${darkMode ? 'bg-gray-900/30' : 'bg-white/30'}
+          backdrop-blur-2xl 
+          ${darkMode ? 'border-gray-700/30' : 'border-white/30'}
+          border rounded-3xl shadow-2xl min-w-[280px]`}>
+          
           <Link
             to="/"
-            className={`flex flex-col items-center p-3 rounded-lg transition-all duration-300 ${
-              location.pathname === "/" ? `${activeBg} ${activeText}` : hoverBg
+            className={`flex flex-col items-center p-3 rounded-2xl transition-all duration-300 mx-1 ${
+              location.pathname === "/" 
+                ? "bg-blue-500 text-white shadow-lg" 
+                : darkMode 
+                  ? "hover:bg-white/10 text-white" 
+                  : "hover:bg-gray-900/10 text-gray-900"
             }`}
           >
-            <Home size={28} className={location.pathname === "/" ? activeText : iconColor} />
-            <span className={`text-xs mt-1 ${location.pathname === "/" ? activeText : iconColor}`}>Home</span>
+            <Home size={24} />
+            <span className="text-xs mt-1">Home</span>
           </Link>
 
-          {/* Character */}
           <Link
             to="/characters"
-            className={`flex flex-col items-center p-3 rounded-lg transition-all duration-300 ${
-              location.pathname === "/characters" ? `${activeBg} ${activeText}` : hoverBg
+            className={`flex flex-col items-center p-3 rounded-2xl transition-all duration-300 mx-1 ${
+              location.pathname === "/characters" 
+                ? "bg-blue-500 text-white shadow-lg" 
+                : darkMode 
+                  ? "hover:bg-white/10 text-white" 
+                  : "hover:bg-gray-900/10 text-gray-900"
             }`}
           >
-            <div className="w-8 h-10">
+            <div className="w-6 h-8">
               <img 
                 src={icon} 
                 alt="Character" 
-                className={`w-full h-full object-cover ${location.pathname === "/characters" ? "brightness-0 invert" : ""}`}
+                className={`w-full h-full object-cover ${
+                  location.pathname === "/characters" ? "brightness-0 invert" : ""
+                }`}
               />
             </div>
-            <span className={`text-xs mt-1 ${location.pathname === "/characters" ? activeText : iconColor}`}>Character</span>
+            <span className="text-xs mt-1">Character</span>
           </Link>
 
-          {/* Films */}
           <Link
             to="/films"
-            className={`flex flex-col items-center p-3 rounded-lg transition-all duration-300 ${
-              location.pathname === "/films" ? `${activeBg} ${activeText}` : hoverBg
+            className={`flex flex-col items-center p-3 rounded-2xl transition-all duration-300 mx-1 ${
+              location.pathname === "/films" 
+                ? "bg-blue-500 text-white shadow-lg" 
+                : darkMode 
+                  ? "hover:bg-white/10 text-white" 
+                  : "hover:bg-gray-900/10 text-gray-900"
             }`}
           >
-            <Film size={28} className={location.pathname === "/films" ? activeText : iconColor} />
-            <span className={`text-xs mt-1 ${location.pathname === "/films" ? activeText : iconColor}`}>Films</span>
+            <Film size={24} />
+            <span className="text-xs mt-1">Films</span>
           </Link>
 
-          {/* User */}
-          <button
-            className={`flex flex-col items-center p-3 rounded-lg transition-all duration-300 ${hoverBg}`}
+          <Link
+            to="/about"
+            className={`flex flex-col items-center p-3 rounded-2xl transition-all duration-300 mx-1 ${
+              location.pathname === "/about" 
+                ? "bg-blue-500 text-white shadow-lg" 
+                : darkMode 
+                  ? "hover:bg-white/10 text-white" 
+                  : "hover:bg-gray-900/10 text-gray-900"
+            }`}
           >
-            <User size={24} className={iconColor} />
-            <span className={`text-xs mt-1 ${iconColor}`}>User</span>
-          </button>
+            <User size={20} />
+            <span className="text-xs mt-1">User</span>
+          </Link>
         </nav>
       </div>
     </>
