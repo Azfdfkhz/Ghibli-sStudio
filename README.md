@@ -114,25 +114,5 @@ simpan ( @import "tailwindcss"; ) di index.css kalo gue tuh
 npm run dev
 
 ## 🔥 **Code**
-
-useEffect(() => {
-  const checkAuthStatus = () => {
-    try {
-      const savedAuth = localStorage.getItem('ghibliAuth');
-      if (!savedAuth) return;
-      const authData = JSON.parse(savedAuth);
-      const isValidAuth = authData.isLoggedIn && authData.username;
-      if (isValidAuth) {
-        setIsLoggedIn(true);
-        setUsername(authData.username);
-      }
-    } catch (error) {
-      console.error('Auth check error:', error);
-      localStorage.removeItem('ghibliAuth');
-    }
-  };
-  checkAuthStatus();
-}, []);
-```
 # nanti ah lanjutnya gamood
 
