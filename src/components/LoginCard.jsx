@@ -1,143 +1,258 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { Eye, EyeOff, User, Lock, Mail, Plus } from 'lucide-react';
 
-function LoginCard({ onLoginSuccess }) {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [rememberMe, setRememberMe] = useState(false);
+export default function LoginCard({ onLoginSuccess }) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [message, setMessage] = useState({ type: '', text: '' });
+  const [isRegistering, setIsRegistering] = useState(false);
+  const [email, setEmail] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  // Ambil users dari localStorage atau gunakan default
+  const getUsers = () => {
+    const savedUsers = localStorage.getItem('ghibliUsers');
+    const defaultUsers = {
+      ghibli: { password: 'rahasia', name: 'Ghibli Fan', email: 'ghibli@demo.com' },
+      totoro: { password: 'myneighbor', name: 'Totoro Lover', email: 'totoro@demo.com' },
+    };
+    return savedUsers ? { ...defaultUsers, ...JSON.parse(savedUsers) } : defaultUsers;
+  };
+
+  const handleLogin = () => {
+    if (!username.trim() || !password.trim()) {
+      setMessage({ type: 'error', text: 'Username dan password harus diisi!' });
+      return;
+    }
+
+    const users = getUsers();
+    const user = users[username.trim().toLowerCase()];
     
-    // State untuk feedback pengguna
-    const [message, setMessage] = useState({ type: '', text: '' });
-    
-    // State untuk menyimpan data Ghibli
-    const [ghibliFilms, setGhibliFilms] = useState([]);
+    if (user && user.password === password.trim()) {
+      setMessage({ 
+        type: 'success', 
+        text: `✅ 😮 Login Berhasil! Selamat datang ${user.name}...` 
+      });
+      setTimeout(() => {
+        onLoginSuccess(user.name);
+      }, 1500);
+    } else {
+      setMessage({ type: 'error', text: 'Username atau password salah!' });
+    }
+  };
 
-    const handleLogin = async (e) => {
-        e.preventDefault(); 
-        setMessage({ type: 'loading', text: 'Memproses Login...' });
-        setGhibliFilms([]); 
+  const handleRegister = () => {
+    if (!username.trim() || !password.trim() || !email.trim()) {
+      setMessage({ type: 'error', text: 'Semua field harus diisi!' });
+      return;
+    }
 
-        // --- SIMULASI LOGIC LOGIN ---
-        if (username === 'ghibli' && password === 'rahasia') {
-            setMessage({ type: 'success', text: 'Login Berhasil! Mengambil data Studio Ghibli...' });
-            
-            try {
-                // MENGGUNAKAN FETCH API (tanpa Axios)
-                const response = await fetch('https://ghibliapi.dev/films');
-                
-                if (!response.ok) {
-                    throw new Error('Gagal terhubung ke API Ghibli.');
-                }
-                
-                const data = await response.json(); 
-                
-                const topFilms = data.slice(0, 5);
-                setGhibliFilms(topFilms);
-                setMessage({ type: 'success', text: `Login dan Pengambilan ${topFilms.length} Film Berhasil!` });
+    if (password !== confirmPassword) {
+      setMessage({ type: 'error', text: 'Password dan konfirmasi password tidak cocok!' });
+      return;
+    }
 
-                // Redirect ke aplikasi setelah 1.5 detik
-                setTimeout(() => {
-                    if (onLoginSuccess) {
-                        onLoginSuccess(username); // Kirim username ke App
-                    }
-                }, 1500);
+    if (password.length < 3) {
+      setMessage({ type: 'error', text: 'Password minimal 3 karakter!' });
+      return;
+    }
 
-            } catch (error) {
-                console.error('Error API:', error);
-                setMessage({ type: 'error', text: 'Gagal koneksi ke API Ghibli.' });
-            }
+    const users = getUsers();
+    const usernameLower = username.trim().toLowerCase();
 
-        } else {
-            setMessage({ type: 'error', text: 'Login Gagal. Username atau Password salah.' });
-        }
+    if (users[usernameLower]) {
+      setMessage({ type: 'error', text: 'Username sudah digunakan!' });
+      return;
+    }
+
+    // Simpan user baru
+    const newUser = {
+      password: password.trim(),
+      name: username.trim(),
+      email: email.trim().toLowerCase()
     };
 
-    const getMessageClasses = () => {
-        switch (message.type) {
-            case 'success': return 'bg-green-100 text-green-700';
-            case 'error': return 'bg-red-100 text-red-700';
-            case 'loading': return 'bg-blue-100 text-blue-700';
-            default: return 'hidden';
-        }
-    };
+    users[usernameLower] = newUser;
+    localStorage.setItem('ghibliUsers', JSON.stringify(users));
 
-    return (
-        <div className="bg-white p-10 rounded-xl shadow-2xl w-full max-w-sm">
-            
-            <h1 className="text-2xl font-bold text-center mb-8 text-blue-600">
-                Login To Studio Ghibli
-            </h1>
-            
-            <form onSubmit={handleLogin}>
-                
-                {/* Input Username */}
-                <div className="mb-4">
-                    <label htmlFor="username" className="block text-gray-700 font-semibold mb-2">Username :</label>
-                    <input 
-                        type="text" 
-                        id="username" 
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
-                        value={username} 
-                        onChange={(e) => setUsername(e.target.value)} 
-                        required
-                    />
-                </div>
-                
-                {/* Input Password */}
-                <div className="mb-6">
-                    <label htmlFor="password" className="block text-gray-700 font-semibold mb-2">Password :</label>
-                    <input 
-                        type="password" 
-                        id="password" 
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" 
-                        value={password} 
-                        onChange={(e) => setPassword(e.target.value)} 
-                        required
-                    />
-                </div>
-                
-                {/* Remember Me */}
-                <div className="mb-8 flex items-center">
-                    <input 
-                        type="checkbox" 
-                        id="remember" 
-                        className="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" 
-                        checked={rememberMe} 
-                        onChange={(e) => setRememberMe(e.target.checked)}
-                    />
-                    <label htmlFor="remember" className="ml-2 text-sm text-gray-600">Remember Me</label>
-                </div>
-                
-                {/* Tombol Login */}
-                <button 
-                    type="submit" 
-                    className="w-full py-3 bg-blue-400 text-white font-bold rounded-lg hover:bg-blue-500 transition duration-200 shadow-md" 
-                    disabled={message.type === 'loading'}
-                >
-                    {message.type === 'loading' ? 'Loading...' : 'Login'}
-                </button>
-                
-            </form>
+    setMessage({ 
+      type: 'success', 
+      text: '🎉 😛 Registrasi berhasil! Silakan login.' 
+    });
+    
+    // Reset form dan kembali ke login
+    setTimeout(() => {
+      setIsRegistering(false);
+      setEmail('');
+      setConfirmPassword('');
+      setMessage({ type: 'success', text: 'Silakan login dengan akun baru Anda!' });
+    }, 2000);
+  };
 
-            {/* Area Pesan/Feedback */}
-            <div className={`mt-4 p-3 rounded-lg text-center ${message.type ? '' : 'hidden'} ${getMessageClasses()}`}>
-                {message.text}
-            </div>
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      if (isRegistering) {
+        handleRegister();
+      } else {
+        handleLogin();
+      }
+    }
+  };
 
-            {/* Daftar Film dari API Ghibli */}
-            {ghibliFilms.length > 0 && (
-                <div className="mt-6 border-t pt-4">
-                    <h3 className="text-lg font-bold text-gray-800 mb-2">Daftar Film (Dari API):</h3>
-                    <ul className="list-disc list-inside text-gray-600 text-sm max-h-40 overflow-y-auto">
-                        {ghibliFilms.map((film) => (
-                            <li key={film.id} className="mb-1">
-                                <strong>{film.title}</strong> ({film.release_date})
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            )}
+  const switchToRegister = () => {
+    setIsRegistering(true);
+    setMessage({ type: '', text: '' });
+    setUsername('');
+    setPassword('');
+    setEmail('');
+    setConfirmPassword('');
+  };
+
+  const switchToLogin = () => {
+    setIsRegistering(false);
+    setMessage({ type: '', text: '' });
+    setUsername('');
+    setPassword('');
+    setEmail('');
+    setConfirmPassword('');
+  };
+
+  return (
+    <div className="w-full max-w-md mx-auto p-8 bg-white/20 dark:bg-gray-800/30 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/30 dark:border-gray-600/30">
+      <div className="text-center mb-8">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+          Studio Ghibli
+        </h1>
+        <p className="text-gray-600 dark:text-gray-300">
+          {isRegistering ? 'Daftar akun baru' : 'Masuk GA!!!'}
+        </p>
+      </div>
+
+      {/* Demo Accounts Info (hanya di login) */}
+      {!isRegistering && (
+        <div className="mb-6 p-4 bg-blue-50/50 dark:bg-blue-900/20 rounded-xl">
+          <h3 className="text-sm font-semibold text-blue-800 dark:text-blue-300 mb-2">
+            🔐 Akun Demo:
+          </h3>
+          <div className="text-xs text-blue-700 dark:text-blue-400 space-y-1">
+            <p><strong>ghibli</strong> / rahasia</p>
+            <p><strong>totoro</strong> / myneighbor</p>
+            <p className="text-green-600 dark:text-green-400">
+              ...atau daftar akun sendiri!
+            </p>
+          </div>
         </div>
-    );
-}
+      )}
 
-export default LoginCard;
+      {/* Form Input */}
+      <div className="space-y-4">
+        {/* Username */}
+        <div className="relative">
+          <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            onKeyPress={handleKeyPress}
+            className="w-full pl-10 pr-4 py-3 bg-white/50 dark:bg-gray-700/50 border border-white/30 dark:border-gray-600/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 backdrop-blur-sm"
+          />
+        </div>
+
+        {/* Email (hanya untuk register) */}
+        {isRegistering && (
+          <div className="relative">
+            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              onKeyPress={handleKeyPress}
+              className="w-full pl-10 pr-4 py-3 bg-white/50 dark:bg-gray-700/50 border border-white/30 dark:border-gray-600/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 backdrop-blur-sm"
+            />
+          </div>
+        )}
+
+        {/* Password */}
+        <div className="relative">
+          <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+          <input
+            type={showPassword ? "text" : "password"}
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            onKeyPress={handleKeyPress}
+            className="w-full pl-10 pr-12 py-3 bg-white/50 dark:bg-gray-700/50 border border-white/30 dark:border-gray-600/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 backdrop-blur-sm"
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+          >
+            {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+          </button>
+        </div>
+
+        {/* Confirm Password (hanya untuk register) */}
+        {isRegistering && (
+          <div className="relative">
+            <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Konfirmasi Password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              onKeyPress={handleKeyPress}
+              className="w-full pl-10 pr-4 py-3 bg-white/50 dark:bg-gray-700/50 border border-white/30 dark:border-gray-600/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 backdrop-blur-sm"
+            />
+          </div>
+        )}
+      </div>
+
+      {/* Message */}
+      {message.text && (
+        <div className={`mt-4 p-3 rounded-xl text-center ${
+          message.type === 'success' 
+            ? 'bg-green-500/20 text-green-700 dark:text-green-300 border border-green-500/30' 
+            : 'bg-red-500/20 text-red-700 dark:text-red-300 border border-red-500/30'
+        }`}>
+          {message.text}
+        </div>
+      )}
+
+      {/* Action Button */}
+      <button
+        onClick={isRegistering ? handleRegister : handleLogin}
+        className="w-full mt-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
+      >
+        {isRegistering ? <Plus className="w-5 h-5" /> : null}
+        {isRegistering ? 'Daftar' : 'Masuk'}
+      </button>
+
+      {/* Switch Mode */}
+      <div className="mt-6 text-center">
+        <button
+          onClick={isRegistering ? switchToLogin : switchToRegister}
+          className="text-blue-500 dark:text-blue-800 hover:text-green-800 dark:hover:text-green-300 font-medium text-sm"
+        >
+          {isRegistering 
+            ? '← Sudah punya akun? Login di sini' 
+            : 'Belum punya akun? Daftar di sini →'
+          }
+        </button>
+      </div>
+
+      {/* Footer */}
+      <div className="mt-6 text-center">
+        <p className="text-xs text-black-100 dark:text-black-100">
+          {isRegistering 
+            ? 'Data disimpan secara lokal di browser Anda' 
+            : 'Demo app - Daftar akun sendiri atau gunakan akun demo'
+          }
+        </p>
+      </div>
+    </div>
+  );
+}
