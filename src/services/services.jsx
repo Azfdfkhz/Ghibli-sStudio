@@ -9,7 +9,7 @@ import {
   serverTimestamp,
   limit
 } from 'firebase/firestore';
-import { db } from '../firebase';
+import { db } from '../firebase.jsX';
 import { useState, useEffect } from 'react';
 
 export const service = {
