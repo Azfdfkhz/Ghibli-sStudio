@@ -255,4 +255,8 @@ export default function LoginCard({ onLoginSuccess }) {
       </div>
     </div>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 5d901f4beabf2004a2cce27d90bb785182c71816
