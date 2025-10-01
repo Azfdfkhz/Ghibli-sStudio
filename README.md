@@ -109,14 +109,27 @@ npm run dev
 
 ## 🔥 **Code**
 
-  useEffect(() => {
-    const checkAuthStatus = () => {
-      try {
-        const savedAuth = localStorage.getItem('ghibliAuth');
-        if (savedAuth) {
-          const authData = JSON.parse(savedAuth);
-          if (authData.isLoggedIn && authData.username) {
-            setIsLoggedIn(true);
-            setUsername(authData.username);
+```javascript
+useEffect(() => {
+  const checkAuthStatus = () => {
+    try {
+      const savedAuth = localStorage.getItem('ghibliAuth');
+      if (!savedAuth) return;
+
+      const authData = JSON.parse(savedAuth);
+      const isValidAuth = authData.isLoggedIn && authData.username;
+      
+      if (isValidAuth) {
+        setIsLoggedIn(true);
+        setUsername(authData.username);
+      }
+    } catch (error) {
+      console.error('Auth check error:', error);
+      localStorage.removeItem('ghibliAuth');
+    }
+  };
+
+  checkAuthStatus();
+}, []);
 
      Fungsi ini untuk auto-login user dari data yang disimpan di browser.
