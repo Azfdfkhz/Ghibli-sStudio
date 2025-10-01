@@ -1,20 +1,34 @@
 import { ArrowLeft, Star } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { useFilmReviews, useSubmitReview, formatFirebaseDate } from "../services/services";
 
-export default function Movie({ film, onClose, darkMode }) {
+export default function Movie({ film, onClose, darkMode, username = "User" }) {
   const [newReview, setNewReview] = useState("");
   const [newReviewRating, setNewReviewRating] = useState(5);
-  const [reviews, setReviews] = useState(film.reviews || []);
+  
+  // Gunakan custom hooks dari service
+  const { reviews, loading: reviewsLoading } = useFilmReviews(film?.id);
+  const { submitReview, submitting } = useSubmitReview();
 
-  const handleAddReview = () => {
+  const handleAddReview = async () => {
     if (!newReview.trim()) return;
-    setReviews([
-      ...reviews,
-      { user: "Kamu", rating: newReviewRating, comment: newReview.trim() },
-    ]);
-    setNewReview("");
-    setNewReviewRating(5);
+
+    try {
+      await submitReview(film.id, {
+        text: newReview,
+        author: username,
+        authorId: "user123",
+        authorAvatar: `https://ui-avatars.com/api/?name=${username}&background=random`,
+        rating: newReviewRating,
+        type: 'film'
+      });
+      
+      setNewReview("");
+      setNewReviewRating(5);
+    } catch (error) {
+      alert("❌ Gagal mengirim review: " + error.message);
+    }
   };
 
   return (
@@ -33,7 +47,7 @@ export default function Movie({ film, onClose, darkMode }) {
 
       {/* Grid */}
       <div className="mt-8 px-4 md:px-8 max-w-[1200px] mx-auto grid md:grid-cols-[320px_1fr] gap-10 items-start">
-        {/* Poster */}
+        {/* Poster - TETAP SAMA */}
         <motion.div
           initial={{ opacity: 0, y: 40, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -41,7 +55,7 @@ export default function Movie({ film, onClose, darkMode }) {
           className="rounded-3xl overflow-hidden shadow-2xl bg-white/20 dark:bg-gray-800/30 backdrop-blur-xl border border-white/30 dark:border-gray-600/30 hover:scale-105 transition-transform"
         >
           <img
-            src={film.image}
+            src={film.image} 
             alt={film.title}
             className="w-full h-auto object-cover"
           />
@@ -95,7 +109,7 @@ export default function Movie({ film, onClose, darkMode }) {
             </motion.p>
           </div>
 
-          {/* Streaming */}
+          {/* Streaming - TETAP SAMA */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -107,15 +121,9 @@ export default function Movie({ film, onClose, darkMode }) {
             </h2>
             <div className="grid grid-cols-3 gap-6">
               {[
-<<<<<<< HEAD
-                { name: "Vidio", icon: "/assets/vidio-logo.png" },
-                { name: "Netflix", icon: "/assets/netflix-logo.png" },
-                { name: "Disney+", icon: "/assets/disney-plus.png" },
-=======
                 { name: "Vidio", icon: "/vidio-logo.png" },
                 { name: "Netflix", icon: "/netflix-logo.png" },
                 { name: "Disney+", icon: "/disney-plus.png" },
->>>>>>> a38c77b8d8aa62a55cb6bf8e4936485dfe946177
               ].map((service, i) => (
                 <motion.div
                   key={service.name}
@@ -139,7 +147,7 @@ export default function Movie({ film, onClose, darkMode }) {
             </div>
           </motion.div>
 
-          {/* Review */}
+          {/* Review Section - HANYA BAGIAN INI YANG DIUPDATE */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -147,35 +155,47 @@ export default function Movie({ film, onClose, darkMode }) {
             className="mt-10 p-6 rounded-3xl bg-white/20 dark:bg-gray-800/30 backdrop-blur-xl shadow-2xl border border-white/30 dark:border-gray-600/30"
           >
             <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-              Review & Komentar
+              Review & Komentar {!reviewsLoading && `(${reviews.length})`}
             </h2>
+
+            {/* Loading State */}
+            {reviewsLoading && (
+              <div className="text-center py-4">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto"></div>
+                <p className="text-gray-700 dark:text-gray-300 mt-2">Memuat reviews...</p>
+              </div>
+            )}
+
             <div className="space-y-4 max-h-64 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 dark:scrollbar-thumb-gray-600 scrollbar-track-gray-200 dark:scrollbar-track-gray-700">
-              {reviews.length > 0 ? (
+              {!reviewsLoading && reviews.length > 0 ? (
                 reviews.map((review, i) => (
                   <motion.div
-                    key={i}
+                    key={review.id}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: 0.1 * i }}
                     className="p-4 rounded-xl bg-white/30 dark:bg-gray-700/40 backdrop-blur-md shadow-md"
                   >
                     <div className="flex items-center justify-between mb-2">
-                      <span className="font-semibold text-gray-900 dark:text-gray-100">{review.user}</span>
+                      <span className="font-semibold text-gray-900 dark:text-gray-100">{review.author}</span>
                       <span className="flex items-center gap-1 text-yellow-400">
                         {Array.from({ length: review.rating }).map((_, idx) => (
                           <Star key={idx} className="w-4 h-4" />
                         ))}
                       </span>
                     </div>
-                    <p className="text-gray-800 dark:text-gray-200">{review.comment}</p>
+                    <p className="text-gray-800 dark:text-gray-200">{review.text}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+                      {formatFirebaseDate(review.createdAt)}
+                    </p>
                   </motion.div>
                 ))
-              ) : (
+              ) : !reviewsLoading && (
                 <p className="text-gray-700 dark:text-gray-300">Belum ada review untuk film ini.</p>
               )}
             </div>
 
-            {/* Input review baru */}
+            {/* Input review baru - TETAP SAMA */}
             <div className="mt-6 flex flex-col md:flex-row gap-4 items-start">
               <div className="flex items-center gap-2">
                 {[1,2,3,4,5].map(num => (
@@ -194,16 +214,17 @@ export default function Movie({ film, onClose, darkMode }) {
                 onChange={(e) => setNewReview(e.target.value)}
                 placeholder="Tulis review kamu..."
                 className="flex-1 p-3 rounded-xl outline-none bg-white/30 dark:bg-gray-700/50 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-300 backdrop-blur-md"
+                disabled={submitting}
               />
               <button
                 onClick={handleAddReview}
-                className="px-5 py-3 rounded-xl bg-blue-500 text-white font-semibold hover:bg-blue-600 transition"
+                disabled={!newReview.trim() || submitting}
+                className="px-5 py-3 rounded-xl bg-blue-500 text-white font-semibold hover:bg-blue-600 transition disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Submit
+                {submitting ? "Mengirim..." : "Submit"}
               </button>
             </div>
           </motion.div>
-
         </motion.div>
       </div>
     </div>

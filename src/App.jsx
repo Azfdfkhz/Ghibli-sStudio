@@ -175,10 +175,15 @@ export default function App() {
     setIsAutoPlaying(true);
   };
 
-  const handleLoginSuccess = (user) => {
-    setIsLoggedIn(true);
-    setUsername(user);
-  };
+const handleLoginSuccess = (username) => {
+  setIsLoggedIn(true);
+  setUsername(username);
+  
+  localStorage.setItem('ghibliAuth', JSON.stringify({
+    isLoggedIn: true,
+    username: username
+  }));
+};
 
   const handleLogout = () => {
     setIsLoggedIn(false);
@@ -404,6 +409,7 @@ export default function App() {
                     film={selectedFilm}
                     onClose={handleCloseMovie}
                     darkMode={darkMode}
+                    username={username} 
                   />
                 </div>
               ) : (
@@ -435,13 +441,26 @@ export default function App() {
               )
             }
           />
-
           <Route
             path="/films"
             element={
-              <div className="flex-1 animate-fade-in">
-                <FilmList films={films} darkMode={darkMode} />
-              </div>
+              selectedFilm ? (
+                <div className="flex-1 animate-fade-in">
+                  <Movie
+                    film={selectedFilm}
+                    onClose={handleCloseMovie}
+                    darkMode={darkMode}
+                  />
+                </div>
+              ) : (
+                <div className="flex-1 animate-fade-in">
+                  <FilmList 
+                    films={films} 
+                    darkMode={darkMode} 
+                    onSelectFilm={handleFilmSelect}
+                  />
+                </div>
+              )
             }
           />
 
