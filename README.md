@@ -71,6 +71,7 @@ DarkMode/LightMode pastinya selain dapat berubah warna pada Darkmode terdapat ic
 Fitur ini dapat mempermudah mencari film Ghibli apa yg ingin kita lihat
 ### 🔧 Fitur Tambahan
 - ⚡ Responsive Design
+- 🔐 Authentication System
 - 📱 Mobile Friendly
 
 ## 🛠️ **Teknologi**
