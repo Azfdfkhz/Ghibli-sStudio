@@ -122,16 +122,16 @@ export default function LoginCard({ onLoginSuccess }) {
           Studio Ghibli
         </h1>
         <p className="text-gray-600 dark:text-gray-300">
-          {isRegistering ? 'Daftar akun baru' : 'Masuk ke aplikasi'}
+          {isRegistering ? 'Daftar akun baru' : 'Masuk ga!!'}
         </p>
       </div>
 
       {!isRegistering && (
         <div className="mb-6 p-4 bg-blue-50/50 dark:bg-blue-900/20 rounded-xl">
-          <h3 className="text-sm font-semibold text-blue-800 dark:text-blue-300 mb-2">
+          <h3 className="text-sm font-semibold text-blue-800 dark:text-white mb-2">
             Akun Demo:
           </h3>
-          <div className="text-xs text-blue-700 dark:text-blue-400 space-y-1">
+          <div className="text-xs text-blue-700 dark:text-pink-300 space-y-1">
             <p><strong>ghibli</strong> / rahasia</p>
             <p><strong>totoro</strong> / myneighbor</p>
           </div>
@@ -220,7 +220,7 @@ export default function LoginCard({ onLoginSuccess }) {
       <div className="mt-6 text-center">
         <button
           onClick={isRegistering ? switchToLogin : switchToRegister}
-          className="text-blue-500 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium text-sm"
+          className="text-blue-700 dark:text-blue-700 hover:text-blue-700 dark:hover:text-white-100 font-medium text-sm"
         >
           {isRegistering 
             ? 'Sudah punya akun? Login di sini' 
@@ -230,7 +230,7 @@ export default function LoginCard({ onLoginSuccess }) {
       </div>
 
       <div className="mt-6 text-center">
-        <p className="text-xs text-gray-500 dark:text-gray-400">
+        <p className="text-xs text-black-500 dark:text-black">
           {isRegistering 
             ? 'Data disimpan secara lokal di browser Anda' 
             : 'Gunakan akun demo atau daftar akun sendiri'
