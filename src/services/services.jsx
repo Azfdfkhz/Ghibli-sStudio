@@ -274,7 +274,7 @@ export const getFilmTitle = (filmId) => {
     '5fdfb320-2a02-49a7-94ff-5ca418cae602': 'When Marnie Was There'
   };
   
-  return filmTitles[filmId] || 'Studio Ghibli Film';
+  return filmTitles[filmId] || 'judul tidak diketahui';
 };
 
 // 🔍 Validate review text
