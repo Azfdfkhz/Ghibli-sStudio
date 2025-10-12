@@ -1,118 +1,75 @@
-# 🚀 [Studio Ghibli]
+# 🚀 **Studio Ghibli Web**
 
 <div align="center">
 
-**✨ Studio Ghibli web [web ini diisi dengan API dari Studio Ghibli (https://ghibliapi.vercel.app/films) ] ✨**
+✨ **Website Studio Ghibli yang menampilkan data film dari [Studio Ghibli API](https://ghibliapi.vercel.app/films)** ✨
+Dibuat dengan **React + TailwindCSS + Firebase** untuk pengalaman yang smooth, modern, dan interaktif!  
 
 </div>
 
-## 👥 **Kelompok Kami**
+---
 
-<table>
-  <tr>
-    <td align="center">
-      <a href="https://github.com/Azfdfkhz">
-        <img src="https://avatars.githubusercontent.com/Azfdfkhz" width="100px;" alt=""/>
-        <br />
-        <sub><b>Azmi Fadhil Fakhrurrazi</b></sub>
-      </a>
-      <br />
-      👉 UI/UX, Sidebar, Banner, Movie, SearchBar, FilmCard  
-    </td>
-    <td align="center">
-      <a href="https://github.com/ItzKevinz">
-        <img src="https://avatars.githubusercontent.com/ItzKevinz" width="100px;" alt=""/>
-        <br />
-        <sub><b>Kevin Hendra Bouwmeester</b></sub>
-      </a>
-      <br />
-      👉 CharacterList, FilmList
-    </td>
-    <td align="center">
-      <a href="https://github.com/username3">
-        <img src="https://avatars.githubusercontent.com/username3" width="100px;" alt=""/>
-        <br />
-        <sub><b>Risma Afiani</b></sub>
-      </a>
-      <br />
-      👉 LoginCard
-    </td>
-        <td align="center">
-      <a href="https://github.com/username3">
-        <img src="https://avatars.githubusercontent.com/username3" width="100px;" alt=""/>
-        <br />
-        <sub><b>Revan Nugraha</b></sub>
-      </a>
-      <br />
-      👉 AboutUs
-    </td>
-  </tr>
-</table>
+## 🎬 **Preview**
 
-## 📖 **Tentang Project**
+> 🎥 Website ini menampilkan daftar film Studio Ghibli lengkap dengan animasi, sistem komentar, dan mode gelap/terang!
 
-**🎯 Latar Belakang:**
-[Tujuan kita membuat ini adalah untuk ujian praktek bagaimana cara untuk menggunakan API di web]
-
-**💡 Tujuan:**
-- [dapet nilai]
-- [dapet nilai +]
-- [dapet nilai ++++++]
-- [dapet Project]
-- [dapet BMW M5]
+---
 
 ## ✨ **Fitur**
 
 ### 🎉 Fitur Utama
-- ✅ **Login** - 
-login disini kita dapat login atau daftar akun baru nah tersimpan pada browser masing masing u know?, untuk melihat pada halaman user nama kita kan kece gitloh
-- ✅ **DarkMode** - 
-DarkMode/LightMode pastinya selain dapat berubah warna pada Darkmode terdapat icon bintang menunjukan bahwa ini malam jika light mode terdapat awan
-- ✅ **Search** - 
-Fitur ini dapat mempermudah mencari film Ghibli apa yg ingin kita lihat
+- ✅ **Login & Register (Firebase Authentication)**  
+  Pengguna dapat membuat akun atau login menggunakan Firebase Auth.  
+  - Akun dan status login **tersimpan langsung di browser pengguna (Auth Persistence)**, bukan di database.  
+  - Setelah login, nama pengguna akan muncul di profil agar pengalaman makin personal 😎  
+
+- ✅ **Dark Mode / Light Mode**  
+  Ubah tampilan website sesuai suasana hatimu!  
+  - 🌙 **Dark Mode**: tampilan gelap dengan ikon bintang ✨  
+  - ☁️ **Light Mode**: tampilan cerah dengan ikon awan ☀️  
+
+- ✅ **Search Film**  
+  Cari film Studio Ghibli favoritmu dengan cepat menggunakan fitur pencarian 🔍  
+
+- ✅ **Komentar (Firebase Firestore)**  
+  Setiap film memiliki kolom komentar sendiri!  
+  Komentar tersimpan di **Firebase Firestore** dan tampil secara realtime 💬  
+
+---
+
 ### 🔧 Fitur Tambahan
-- ⚡ Responsive Design
-- 🔐 Authentication System
-- 📱 Mobile Friendly
+- ⚡ **Responsive Design** — Tetap keren di semua ukuran layar  
+- 💫 **Animasi Interaktif (Framer Motion)** — Transisi halus dan dinamis  
+- 🔐 **Sistem Login Otomatis (Auth Persistence)** — Tidak perlu login berulang  
+- 🎨 **Efek Parallax Hover (React Parallax Tilt)**  
+- 📱 **Mobile Friendly Design**
 
-## 🛠️ **Teknologi**
+---
 
-### **Frontend:**
+## 🛠️ **Teknologi yang Digunakan**
+
+### 🎨 **Frontend**
 ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white)
-![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 ![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
 ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 ![Lucide React](https://img.shields.io/badge/Lucide_React-FF6B6B?style=for-the-badge&logo=react&logoColor=white)
 ![React Parallax Tilt](https://img.shields.io/badge/React_Parallax_Tilt-8A2BE2?style=for-the-badge&logo=react&logoColor=white)
 
+> ✨ **Frontend ini dibuat dengan gaya modern, cepat, dan interaktif.**  
+> Menggunakan **Framer Motion** untuk animasi, **TailwindCSS** untuk styling, dan **React Router** untuk navigasi halaman yang smooth.
 
-## 🚀 **Cara Install**
+---
 
+### 🔥 **Backend**
+![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
 
-### **membuat project:**
-- Create vite@latest 
-- pilih REACT lalu JAVASCRIPT
--Ghibli-Web
+> Backend menggunakan **Firebase** untuk autentikasi, penyimpanan komentar, dan pengelolaan data secara realtime.
 
-### **Langkah-langkah:**
+---
 
-# Masuk ke directory
-cd Ghibli-Web
+## 🚀 **Cara Install & Menjalankan Project**
 
-# Install dependencies
-npm install
-
-# Install Tallwind 4.1
-npm install tailwindcss @tailwindcss/vite
-
-# lalu import vite plugin
-cari aja di website tallwind 
-
-simpan ( @import "tailwindcss"; ) di index.css kalo gue tuh
- 
-# Jalankan development server
-npm run dev
-
-## 🔥 **Code**
-# nanti ah lanjutnya gamood
-
+### 1️⃣ Clone Repository
+```bash
+git clone https://github.com/username/Ghibli-Web.git
