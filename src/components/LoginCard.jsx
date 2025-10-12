@@ -220,7 +220,7 @@ export default function LoginCard({ onLoginSuccess }) {
       <div className="mt-6 text-center">
         <button
           onClick={isRegistering ? switchToLogin : switchToRegister}
-          className="text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 font-medium text-sm transition-colors duration-300"
+          className="text-blue-700 dark:text-blue-900 hover:text-blue-500 dark:hover:text-blue-300 font-medium text-sm transition-colors duration-300"
         >
           {isRegistering 
             ? 'Sudah punya akun? Login di sini' 
