@@ -4,7 +4,7 @@
 
 ✨ **Website Studio Ghibli yang menampilkan data film dari [Studio Ghibli API](https://ghibliapi.vercel.app/films)** ✨
 Dibuat dengan **React + TailwindCSS + Firebase** untuk pengalaman yang smooth, modern, dan interaktif!  
-
+    ** jika ingin mencobanya [ https://ghiblis-studio-neon.vercel.app ] **
 </div>
 
 ---
