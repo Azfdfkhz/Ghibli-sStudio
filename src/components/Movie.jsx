@@ -7,7 +7,6 @@ export default function Movie({ film, onClose, darkMode, username = "User" }) {
   const [newReview, setNewReview] = useState("");
   const [newReviewRating, setNewReviewRating] = useState(5);
   
-  // Gunakan custom hooks dari service
   const { reviews, loading: reviewsLoading } = useFilmReviews(film?.id);
   const { submitReview, submitting } = useSubmitReview();
 

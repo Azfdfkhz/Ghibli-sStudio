@@ -2,15 +2,16 @@ import { useState, useEffect } from "react";
 import { Home, User, Film } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
-import l1 from "../Logo/1.png";
-import l2 from "../Logo/2.png";
-import l3 from "../Logo/3.png";
-import l4 from "../Logo/4.png";
-import l5 from "../Logo/5.png";
-import l6 from "../Logo/6.png";
-import icon from "../Logo/icon.png";
+const logoImages = [
+  "/Logo/1.png",
+  "/Logo/2.png", 
+  "/Logo/3.png",
+  "/Logo/4.png",
+  "/Logo/5.png",
+  "/Logo/6.png"
+];
 
-const logoImages = [l1, l2, l3, l4, l5, l6];
+const icon = "/Logo/icon.png";
 
 export default function Sidebar({ darkMode, onLogout }) {
   const [currentLogo, setCurrentLogo] = useState(0);

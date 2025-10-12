@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Search, ChevronLeft, ChevronRight, Sun, Moon, Cloud } from "lucide-react";
-import logo from "../Logo/logo.png";
+import logo from "/Logo/logo.png";
 import FilmCard from "./FilmCard";
 
 export default function Banner({ film, films, onPrev, onNext, darkMode, setDarkMode, onSelectFilm }) {

@@ -1,4 +1,3 @@
-// services/service.jsx
 import { 
   collection, 
   addDoc, 
@@ -9,19 +8,16 @@ import {
   serverTimestamp,
   limit
 } from 'firebase/firestore';
-import { db } from '../firebase';
+import { db } from '../Firebase.jsx';
 import { useState, useEffect } from 'react';
 
 export const service = {
-  // ==================== FILM REVIEWS ====================
-  
-  // ✅ Add film review
   async addReview(filmId, reviewData) {
     try {
       const review = {
         ...reviewData,
         filmId,
-        type: 'film', // Tandai sebagai review film
+        type: 'film', 
         createdAt: serverTimestamp(),
         likes: 0,
         reported: false
@@ -36,7 +32,6 @@ export const service = {
     }
   },
 
-  // ✅ Get film reviews
   getFilmReviews(filmId, callback) {
     const q = query(
       collection(db, 'reviews'),
@@ -54,7 +49,6 @@ export const service = {
     });
   },
 
-  // ✅ Get ALL reviews (for About page dropdown)
   getAllReviews(callback) {
     const q = query(
       collection(db, 'reviews'),
@@ -71,14 +65,12 @@ export const service = {
     });
   },
 
-  // ==================== WEBSITE REVIEWS ====================
-  
-  // ✅ Add website review
+
   async addWebsiteReview(reviewData) {
     try {
       const review = {
         ...reviewData,
-        type: 'website', // Tandai sebagai review website
+        type: 'website', 
         createdAt: serverTimestamp(),
         likes: 0
       };
@@ -92,7 +84,7 @@ export const service = {
     }
   },
 
-  // ✅ Get website reviews
+  // Get website reviews
   getWebsiteReviews(callback) {
     const q = query(
       collection(db, 'reviews'),
@@ -113,7 +105,7 @@ export const service = {
 
 // ==================== CUSTOM HOOKS ====================
 
-// 🎣 Hook untuk film reviews
+//  Hook untuk film reviews
 export const useFilmReviews = (filmId) => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -138,7 +130,7 @@ export const useFilmReviews = (filmId) => {
   return { reviews, loading, error };
 };
 
-// 🎣 Hook untuk semua reviews
+// Hook untuk semua reviews
 export const useAllReviews = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -158,7 +150,7 @@ export const useAllReviews = () => {
   return { reviews, loading, error };
 };
 
-// 🎣 Hook untuk website reviews
+// Hook untuk website reviews
 export const useWebsiteReviews = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -180,7 +172,7 @@ export const useWebsiteReviews = () => {
 
 // ==================== SUBMIT HOOKS ====================
 
-// 🎣 Hook untuk submit film review
+// Hook untuk submit film review
 export const useSubmitReview = () => {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
@@ -203,7 +195,7 @@ export const useSubmitReview = () => {
   return { submitReview, submitting, error };
 };
 
-// 🎣 Hook untuk submit website review
+// Hook untuk submit website review
 export const useSubmitWebsiteReview = () => {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
@@ -226,9 +218,8 @@ export const useSubmitWebsiteReview = () => {
   return { submitWebsiteReview, submitting, error };
 };
 
-// ==================== UTILITY FUNCTIONS ====================
 
-// 🕒 Format timestamp
+// Format timestamp
 export const formatFirebaseDate = (timestamp) => {
   if (!timestamp) return 'Baru saja';
   
@@ -274,7 +265,7 @@ export const getFilmTitle = (filmId) => {
     '5fdfb320-2a02-49a7-94ff-5ca418cae602': 'When Marnie Was There'
   };
   
-  return filmTitles[filmId] || 'Studio Ghibli Film';
+  return filmTitles[filmId] || 'judul tidak diketahui';
 };
 
 // 🔍 Validate review text

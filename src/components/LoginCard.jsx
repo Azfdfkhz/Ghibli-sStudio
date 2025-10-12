@@ -10,7 +10,6 @@ export default function LoginCard({ onLoginSuccess }) {
   const [email, setEmail] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  // Ambil users dari localStorage atau gunakan default
   const getUsers = () => {
     const savedUsers = localStorage.getItem('ghibliUsers');
     const defaultUsers = {
@@ -32,7 +31,7 @@ export default function LoginCard({ onLoginSuccess }) {
     if (user && user.password === password.trim()) {
       setMessage({ 
         type: 'success', 
-        text: `✅ 😮 Login Berhasil! Selamat datang ${user.name}...` 
+        text: `Login Berhasil! Selamat datang ${user.name}...` 
       });
       setTimeout(() => {
         onLoginSuccess(user.name);
@@ -66,7 +65,6 @@ export default function LoginCard({ onLoginSuccess }) {
       return;
     }
 
-    // Simpan user baru
     const newUser = {
       password: password.trim(),
       name: username.trim(),
@@ -78,10 +76,9 @@ export default function LoginCard({ onLoginSuccess }) {
 
     setMessage({ 
       type: 'success', 
-      text: '🎉 😛 Registrasi berhasil! Silakan login.' 
+      text: 'Registrasi berhasil! Silakan login.' 
     });
     
-    // Reset form dan kembali ke login
     setTimeout(() => {
       setIsRegistering(false);
       setEmail('');
@@ -125,29 +122,23 @@ export default function LoginCard({ onLoginSuccess }) {
           Studio Ghibli
         </h1>
         <p className="text-gray-600 dark:text-gray-300">
-          {isRegistering ? 'Daftar akun baru' : 'Masuk GA!!!'}
+          {isRegistering ? 'Daftar akun baru' : 'Masuk ga!!'}
         </p>
       </div>
 
-      {/* Demo Accounts Info (hanya di login) */}
       {!isRegistering && (
         <div className="mb-6 p-4 bg-blue-50/50 dark:bg-blue-900/20 rounded-xl">
-          <h3 className="text-sm font-semibold text-blue-800 dark:text-blue-300 mb-2">
-            🔐 Akun Demo:
+          <h3 className="text-sm font-semibold text-blue-800 dark:text-white mb-2">
+            Akun Demo:
           </h3>
-          <div className="text-xs text-blue-700 dark:text-blue-400 space-y-1">
+          <div className="text-xs text-blue-700 dark:text-pink-300 space-y-1">
             <p><strong>ghibli</strong> / rahasia</p>
             <p><strong>totoro</strong> / myneighbor</p>
-            <p className="text-green-600 dark:text-green-400">
-              ...atau daftar akun sendiri!
-            </p>
           </div>
         </div>
       )}
 
-      {/* Form Input */}
       <div className="space-y-4">
-        {/* Username */}
         <div className="relative">
           <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
           <input
@@ -160,7 +151,6 @@ export default function LoginCard({ onLoginSuccess }) {
           />
         </div>
 
-        {/* Email (hanya untuk register) */}
         {isRegistering && (
           <div className="relative">
             <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -175,7 +165,6 @@ export default function LoginCard({ onLoginSuccess }) {
           </div>
         )}
 
-        {/* Password */}
         <div className="relative">
           <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
           <input
@@ -195,7 +184,6 @@ export default function LoginCard({ onLoginSuccess }) {
           </button>
         </div>
 
-        {/* Confirm Password (hanya untuk register) */}
         {isRegistering && (
           <div className="relative">
             <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -211,7 +199,6 @@ export default function LoginCard({ onLoginSuccess }) {
         )}
       </div>
 
-      {/* Message */}
       {message.text && (
         <div className={`mt-4 p-3 rounded-xl text-center ${
           message.type === 'success' 
@@ -222,7 +209,6 @@ export default function LoginCard({ onLoginSuccess }) {
         </div>
       )}
 
-      {/* Action Button */}
       <button
         onClick={isRegistering ? handleRegister : handleLogin}
         className="w-full mt-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
@@ -231,32 +217,26 @@ export default function LoginCard({ onLoginSuccess }) {
         {isRegistering ? 'Daftar' : 'Masuk'}
       </button>
 
-      {/* Switch Mode */}
       <div className="mt-6 text-center">
         <button
           onClick={isRegistering ? switchToLogin : switchToRegister}
-          className="text-blue-500 dark:text-blue-800 hover:text-green-800 dark:hover:text-green-300 font-medium text-sm"
+          className="text-blue-700 dark:text-blue-700 hover:text-blue-700 dark:hover:text-white-100 font-medium text-sm"
         >
           {isRegistering 
-            ? '← Sudah punya akun? Login di sini' 
-            : 'Belum punya akun? Daftar di sini →'
+            ? 'Sudah punya akun? Login di sini' 
+            : 'Belum punya akun? Daftar di sini'
           }
         </button>
       </div>
 
-      {/* Footer */}
       <div className="mt-6 text-center">
-        <p className="text-xs text-black-100 dark:text-black-100">
+        <p className="text-xs text-black-500 dark:text-black">
           {isRegistering 
             ? 'Data disimpan secara lokal di browser Anda' 
-            : 'Demo app - Daftar akun sendiri atau gunakan akun demo'
+            : 'Gunakan akun demo atau daftar akun sendiri'
           }
         </p>
       </div>
     </div>
   );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 5d901f4beabf2004a2cce27d90bb785182c71816
