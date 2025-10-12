@@ -533,7 +533,7 @@ export default function AboutUs({ darkMode, username = "Ghibli User", onLogout }
             darkMode ? 'text-gray-200' : 'text-gray-700'
           }`}>
             <p className="text-base lg:text-lg leading-relaxed">
-              Welcome to our <span className="font-bold text-blue-500">Studio Ghibli Web</span> Disini dibuat oleh 4 orang + bang AI yaitu <span className="font-bold text-blue-800">Azmi,Kevin,Risma,Revan</span>
+              Welcome to our <span className="font-bold text-blue-500">Studio Ghibli Web</span> Disini dibuat oleh yaitu <span className="font-bold text-blue-800">Azmi Fadhil Fakhrurrazi</span>
             </p>
 
             <p className="text-base lg:text-lg leading-relaxed">
