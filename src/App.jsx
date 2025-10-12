@@ -36,6 +36,7 @@ export default function App() {
           setUsername(authData.username);
         }
         
+        // Load dark mode preference
         const savedDarkMode = storage.get(STORAGE_KEYS.DARK_MODE, false);
         setDarkMode(savedDarkMode);
       } catch (error) {
@@ -47,6 +48,7 @@ export default function App() {
 
     checkAuthStatus();
   }, []);
+
   useEffect(() => {
     storage.set(STORAGE_KEYS.DARK_MODE, darkMode);
   }, [darkMode]);
@@ -61,11 +63,13 @@ export default function App() {
         
         const startTime = Date.now();
         
+        // Fetch films from API
         const data = await api.getFilms();
         
         if (Array.isArray(data) && data.length > 0) {
           setFilms(data);
           
+          // Set Totoro sebagai film awal
           const totoroIndex = data.findIndex((film) =>
             film.title.toLowerCase().includes("totoro")
           );
@@ -74,6 +78,7 @@ export default function App() {
           throw new Error("No films data received");
         }
 
+        // Minimum loading time untuk UX
         const elapsedTime = Date.now() - startTime;
         const minimumLoadingTime = 2500;
         
@@ -87,6 +92,7 @@ export default function App() {
         console.error("Fetch films failed:", err);
         setError("Gagal mengambil data film. Menggunakan data fallback.");
         
+        // Use fallback data
         setFilms(FALLBACK_FILMS);
         setCurrent(0);
         
@@ -155,10 +161,12 @@ export default function App() {
     window.location.reload();
   };
 
+  // Loading - Checking Auth
   if (checkingAuth) {
     return <LoadingScreen darkMode={darkMode} message="Checking Authentication..." />;
   }
 
+  // Not Logged In - Show Login
   if (!isLoggedIn) {
     return (
       <div className={`flex min-h-screen items-center justify-center transition-colors duration-1000 ${
@@ -171,6 +179,7 @@ export default function App() {
     );
   }
 
+  // Loading - Fetching Films
   if (loading) {
     return (
       <div className={`flex h-screen ${
@@ -186,6 +195,7 @@ export default function App() {
     );
   }
 
+  // Error State
   if (error && films.length === 0) {
     return (
       <div className={`flex h-screen ${
@@ -203,6 +213,7 @@ export default function App() {
     );
   }
 
+  // No Films Found
   if (films.length === 0) {
     return (
       <div className={`flex h-screen ${darkMode ? "bg-gray-900" : "bg-blue-400"}`}>
