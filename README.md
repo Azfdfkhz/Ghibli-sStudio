@@ -60,7 +60,7 @@ Semua proses berlangsung **real-time** berkat integrasi penuh dengan **Firebase*
 - 🧠 **React Context API** – Global state management untuk auth, cart, dan produk  
 - 💾 **Local Storage Persistence** – Menyimpan data cart di sisi client  
 - 🔁 **Custom Hooks** – Logika reusable untuk operasi bisnis & integrasi realtime
- ---------------------------------------------------------------------------------
+ "---------------------------------------------------------------------------------"
 - 🖼️ **Github** - disini menyimpan link produk yang akan di upload ke product
 ---
 
