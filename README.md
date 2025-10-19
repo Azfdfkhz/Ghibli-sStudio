@@ -72,6 +72,73 @@ Setiap elemen dirancang agar memberikan kesan **mewah, cepat, dan interaktif**, 
 ---
 
 ## 📸 Preview
+<h2 align="center">🖼️ SolveSmart – UI Preview</h2>
+<p align="center">
+  <i>Tampilan antarmuka SolveSmart dengan desain dark luxury, interaktif, dan responsif di semua perangkat.</i>
+</p>
+<br/>
+
+<h3 align="center">🔐 Login Page</h3>
+<p align="center">
+  <img src="https://github.com/Azfdfkhz/imageproduct/blob/main/login.png?raw=true" width="700" alt="Login Page">
+</p>
+<p align="center"><i>Halaman login modern dengan Firebase Authentication dan validasi real-time.</i></p>
+
+---
+
+<h3 align="center">🏠 Home Page</h3>
+<p align="center">
+  <img src="https://github.com/Azfdfkhz/imageproduct/blob/main/home.png?raw=true" width="700" alt="Home Page">
+</p>
+<p align="center"><i>Beranda utama dengan tampilan produk unggulan dan navigasi yang smooth menggunakan React Router.</i></p>
+
+---
+
+<h3 align="center">🛍️ Product Page</h3>
+<p align="center">
+  <img src="https://github.com/Azfdfkhz/imageproduct/blob/main/product.png?raw=true" width="700" alt="Product Page">
+</p>
+<p align="center"><i>Menampilkan daftar produk digital dengan desain kartu interaktif dan animasi halus menggunakan Framer Motion.</i></p>
+
+---
+
+<h3 align="center">👤 User Profile</h3>
+<p align="center">
+  <img src="https://github.com/Azfdfkhz/imageproduct/blob/main/profile.png?raw=true" width="700" alt="User Profile">
+</p>
+<p align="center"><i>Halaman profil pengguna untuk mengelola informasi akun, riwayat pesanan, dan pengaturan akun.</i></p>
+
+---
+
+<h3 align="center">🧑‍💼 Admin Profile</h3>
+<p align="center">
+  <img src="https://github.com/Azfdfkhz/imageproduct/blob/main/profile%20admin.png?raw=true" width="700" alt="Admin Profile">
+</p>
+<p align="center"><i>Profil admin dengan akses cepat ke dashboard, pengelolaan produk, dan statistik toko.</i></p>
+
+---
+
+<h3 align="center">🛒 Cart Page</h3>
+<p align="center">
+  <img src="https://github.com/Azfdfkhz/imageproduct/blob/main/cart.png?raw=true" width="700" alt="Cart Page">
+</p>
+<p align="center"><i>Keranjang belanja interaktif dengan fitur update jumlah produk dan perhitungan total otomatis.</i></p>
+
+---
+
+<h3 align="center">📊 Admin Dashboard</h3>
+<p align="center">
+  <img src="https://github.com/Azfdfkhz/imageproduct/blob/main/dashboard%20admin.png?raw=true" width="700" alt="Admin Dashboard">
+</p>
+<p align="center"><i>Dashboard admin real-time untuk memantau transaksi, mengelola produk, dan memantau aktivitas pengguna.</i></p>
+
+---
+
+<h3 align="center">💬 Admin Chat Panel</h3>
+<p align="center">
+  <img src="https://github.com/Azfdfkhz/imageproduct/blob/main/chat%20admin.png?raw=true" width="700" alt="Admin Chat">
+</p>
+<p align="center"><i>Panel chat real-time yang terhubung langsung ke Firebase, memungkinkan interaksi cepat dengan pelanggan.</i></p>
 
 
 ---
