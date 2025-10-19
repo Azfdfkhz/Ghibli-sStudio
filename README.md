@@ -1,7 +1,6 @@
 # 🛍️ SolveSmart - E-commerce Template Platform
 
-[![SolveSmart](https://img.shields.io/badge/SolveSmart-E--commerce%2520Platform-blue)](https://github.com/Azfdfkhz/SolveSmart)
-![React](https://img.shields.io/badge/React-18.2.0-61DAFB?logo=react)
+![React](https://img.shields.io/badge/React-19.2.0-61DAFB?logo=react)
 ![Firebase](https://img.shields.io/badge/Firebase-9.22.0-FFCA28?logo=firebase)
 ![Tailwind](https://img.shields.io/badge/Tailwind-CSS-38B2AC?logo=tailwind-css)
 
@@ -20,7 +19,7 @@ Semua proses berlangsung **real-time** berkat integrasi penuh dengan **Firebase*
 - **Quick Checkout Process** – Proses checkout yang efisien dan cepat  
 
 ### 💳 Sistem Pembayaran Terintegrasi
-- **Multiple Payment Methods** – Mendukung QRIS dan pembayaran cash  
+- **Multiple Payment Methods** – Mendukung QRIS (walaupun belum qris asli) dan pembayaran cash  
 - **Secure Payment Processing** – Terintegrasi langsung dengan backend Firebase  
 - **Real-time Order Tracking** – Pantau status pesanan secara real-time  
 - **Payment Status Monitoring** – Update status pembayaran otomatis  
@@ -47,7 +46,7 @@ Semua proses berlangsung **real-time** berkat integrasi penuh dengan **Firebase*
 ## 🚀 Tech Stack & Architecture
 
 ### **Frontend Ecosystem**
-- ⚛️ **React 18** – Library UI modern dengan hooks terbaru  
+- ⚛️ **React 19** – Library UI modern dengan hooks terbaru  
 - 🌐 **React Router DOM** – Client-side routing dinamis  
 - 🎨 **Tailwind CSS** – Utility-first CSS framework untuk pengembangan cepat  
 - 🧩 **React Icons** – Koleksi ikon lengkap (Feather & Font Awesome)
@@ -149,7 +148,7 @@ Setiap elemen dirancang agar memberikan kesan **mewah, cepat, dan interaktif**, 
 git clone https://github.com/Azfdfkhz/SolveSmart.git
 
 # Masuk ke folder project
-cd SolveSmart
+cd SolveSmart - smart
 
 # Install dependencies
 npm install
